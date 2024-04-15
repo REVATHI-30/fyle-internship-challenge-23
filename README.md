@@ -19,4 +19,3 @@ ng test --code-coverage
 6. According to the page size selected, the page numbers are calculated by retrieving the actual count of repositories data with the username and dividing it with page size to get the page numbers. 
 7. Local storage caching is implemented so that the API call is not duplicated when page is refreshed or page numbers are changed. Key value pairs are generated for this purpose. 
 8. Unit test for 1 component (Search Component) and 1 service (api service) is implemented. 
-9. 
