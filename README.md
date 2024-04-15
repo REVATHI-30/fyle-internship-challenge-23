@@ -2,6 +2,7 @@
 
 ## How to run the app 
 Run `ng serve` for a dev server. Navigate to http://localhost:4200/.
+Live site link: https://revathi-30.github.io/fyle-internship-challenge-23/
 
 paths: /search for search feature 
        /result for repositories and other user details 
