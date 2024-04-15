@@ -1,6 +1,6 @@
 # Fyle Frontend Challenge
 
-##How to run the app 
+#How to run the app 
 Run `ng serve` for a dev server. Navigate to http://localhost:4200/.
 
 paths: /search for search feature 
