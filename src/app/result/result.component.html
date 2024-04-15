@@ -1,0 +1,97 @@
+<body class="grid h-screen w-screen">
+  <div class="container mx-auto px-4 pt-10">
+
+    <div class="top-0 right-0 flex flex-col items-end mr-4 sm:mr-10 mt-4 sm:mt-10">
+      <div class="flex items-center mb-2">
+        <p class="text-lg text-gray-600 mr-1">Select no. of repositories/page:</p>
+
+        <!-- Dropdown for page size -->
+        <div class="relative flex">
+          <select class="block appearance-none w-24 sm:w-40 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange()">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="100">100</option>
+          </select>
+         
+          <div class="pointer-events-none absolute inset-y-0 inset-x-0 flex items-center pl-8 pr-4 text-gray-700">
+            <svg class="fill-current h-4 w-4 ml-auto mr-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M9 11l3 3 3-3M12 18V8"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-start mb-4">
+     <!-- Round area and text inside it -->
+     <div class="w-24 h-24 sm:w-40 sm:h-40 rounded-full border border-gray-300 flex-shrink-0 overflow-hidden mr-4">
+     <img src="{{ avatarUrl }}" alt="User Avatar" class="w-full h-full object-cover">
+     </div>
+
+      <!-- Full user details section -->      
+      <div class="flex flex-col">
+        <!-- Username -->
+        <h2 class="text-xl sm:text-2xl mt-2" id="username">{{ username }}</h2>
+    
+        <!-- Bio goes here -->
+        <p class="text-base sm:text-lg mb-2" id="bio">{{ bio }}</p>
+    
+        <!-- Location -->
+        <div class="flex items-center mb-2">
+          <p class="text-base sm:text-lg text-gray-600 mr-1">Location:</p>
+          <p class="text-base sm:text-lg text-gray-600" id="location">{{ location }}</p>
+        </div>
+        
+        <!-- Twitter/Instagram link -->
+        <div class="flex items-center mb-2" id="socialLinkContainer">
+          <!-- Display only if user has Twitter or Instagram link -->
+          <p class="text-base sm:text-lg text-gray-600 mr-1">Twitter:</p>
+          <a class="text-base sm:text-lg text-blue-500 hover:underline" [href]="socialLink" target="_blank">{{ socialLink }}</a>
+        </div>
+    
+        <!-- GitHub account URL -->
+        <div *ngIf="githubUrl" class="flex items-start mt-2 mb-2">
+          <p class="text-base sm:text-lg text-gray-600 mr-1">GitHub:</p>
+          <a class="text-base sm:text-lg text-blue-500" href="{{ githubUrl }}" target="_blank">{{ githubUrl }}</a>
+        </div>
+      </div>
+    </div>
+    
+    
+      <!-- Repositories -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <ng-container *ngIf="repositories.length > 0; else noRepositories">
+        <div *ngFor="let repository of repositories" class="border border-black p-4">
+          <!-- Repository name in blue color and larger text size -->
+          <h3 class="text-lg sm:text-xl text-blue-500 font-bold">{{ repository.name }}</h3>
+          <p *ngIf="repository.description" class="text-base sm:text-lg text-gray-600">{{ repository.description }}</p>
+          <div *ngIf="repository.topics && repository.topics.length > 0" class="flex flex-wrap mt-2">
+            <span *ngFor="let topic of repository.topics" class="bg-blue-500 text-white px-2 py-1 rounded mr-2 mb-2">{{ topic }}</span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  
+    <!-- No repositories message -->
+    <ng-template #noRepositories>
+      <p class="text-gray-500">No repositories found.</p>
+    </ng-template>
+
+    <!-- Pagination controls -->
+  <div class="flex justify-center mt-4">
+    <button class="mr-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="onPageNumberChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <div class="flex">
+      <button *ngFor="let pageNumber of pageNumbers"
+              class="mx-1 px-4 py-2 rounded text-black border border-black hover:bg-blue-500 text-black hover:text-white"
+              [class.bg-blue-500]="pageNumber === currentPage"
+              (click)="onPageNumberChange(pageNumber)"
+              [disabled]="pageNumber === currentPage">
+        {{ pageNumber }}
+      </button>
+    </div>
+    <button class="ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" (click)="onPageNumberChange(currentPage + 1)" [disabled]="currentPage === pageNumbers.length">Next</button>
+  </div>
+  </div>
+</body>

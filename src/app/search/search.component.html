@@ -1,0 +1,11 @@
+<body class="flex flex-col h-screen w-screen items-center justify-center bg-gray-100">
+  <div class="flex flex-col items-center">
+    <h1 class="text-4xl font-bold mb-4 text-center">Search your GitHub username here!</h1>
+    <div class="flex flex-col items-center sm:flex-row sm:items-stretch sm:w-full max-w-md">
+      <input type="text" [(ngModel)]="searchQuery" class="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500 mb-4 sm:mb-0 sm:mr-2" placeholder="Ex. johnpapa">
+      <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 sm:w-auto" (click)="searchUser()">Search</button>
+    </div>
+  
+    <div *ngIf="showZeroStateMessage" class="text-gray-500 mt-4">No user found.</div>
+  </div>
+</body>
