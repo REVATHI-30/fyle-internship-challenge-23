@@ -1,16 +1,16 @@
 # Fyle Frontend Challenge
 
-#How to run the app 
+## How to run the app 
 Run `ng serve` for a dev server. Navigate to http://localhost:4200/.
 
 paths: /search for search feature 
        /result for repositories and other user details 
 
-## How to run unit tests 
+#How to run unit tests 
 ng test --code-coverage 
-We are using Angular CLI for coverage report. 
+(We are using Angular CLI for coverage report.)
 
-#Implemented tasks inlcude: 
+## Implemented tasks inlcude: 
 1. A search bar present with a button which allows the user of the app to search by a Github username on clicking the search button. 
 2. In case a user is not found by the same, an empty zero state is displayed. The search bar will be visible and a message "No user found" is displyed on template. 
 3. Topics are displayed according to the API response for a particular username. 
